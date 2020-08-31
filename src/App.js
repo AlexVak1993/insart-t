@@ -4,18 +4,17 @@ import Table from "./components/Table/Table";
 import Converter from "./components/Converter/Converter";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-
-
-
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isLoading: true,
+      isLoading: false,
       data: [],
-      onLoadCounter: 0
+      onLoadCounter: 0,
+      // isError: false,
     };
   }
 
@@ -29,11 +28,22 @@ class App extends Component {
       data,
     });
 
+     
     let onLoadCounter = localStorage.getItem("Counter");
-    if (onLoadCounter < 5) {
+    // const main = document.querySelector('.mainComp')
+    // const child = document.querySelector('.hideTable')
+      if (onLoadCounter < 5) {
       onLoadCounter++;
+      // main.removeChild(child)
+    } else if (onLoadCounter === 5) {
+      // this.setState({
+      //   isLoading: true
+      // });
     } else {
-      onLoadCounter = 0
+      // this.setState({
+      //   isLoading: true
+      // });
+      onLoadCounter = 0;
     }
     localStorage.setItem("Counter", onLoadCounter);
   }
@@ -44,7 +54,7 @@ class App extends Component {
         {this.state.isLoading ? (
           <Loader />
         ) : (
-          <div>
+          <div className="mainComp">
             <Header />
             <Table data={this.state.data} />
             <Converter data={this.state.data} />

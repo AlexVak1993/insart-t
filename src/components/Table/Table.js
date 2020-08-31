@@ -6,7 +6,7 @@ export default function Table(props) {
   
 
   return (
-    <div className="container">
+    <div className="container hideTable">
       <table className="table table-bordered mb-5">
         <thead>
           <tr className="d-flex">
